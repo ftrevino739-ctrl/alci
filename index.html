@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALCI Consultores — Soluciones de Recursos Humanos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EEF5F9;
+    --bg-deep: #E1EEF5;
+    --panel: #FFFFFF;
+    --navy: #0E3A54;
+    --navy-soft: #295A78;
+    --teal: #1C8C93;
+    --teal-light: #59B4B8;
+    --accent: #C9955B;
+    --line: #C7DCE6;
+    --line-soft: #DCE9F0;
+    --muted: #4C6C7D;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1100px 480px at 85% -10%, rgba(28,140,147,0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(201,149,91,0.07), transparent 55%),
+      var(--bg);
+    color:var(--navy);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    font-weight:500;
+    color:var(--navy);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 40px; position:relative; z-index:1;}
+
+  /* corner bracket signature, echoes the ALCI mark */
+  .bracket{position:relative;}
+  .bracket::before, .bracket::after{
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border-top:1.5px solid var(--teal);
+    border-left:1.5px solid var(--teal);
+    top:-6px; left:-6px;
+  }
+  .bracket::after{
+    border-top:none; border-left:none;
+    border-bottom:1.5px solid var(--teal);
+    border-right:1.5px solid var(--teal);
+    top:auto; left:auto; bottom:-6px; right:-6px;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(238,245,249,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{
+    max-width:1080px; margin:0 auto; padding:22px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:'Source Serif 4', serif;
+    font-size:20px; font-weight:600;
+    letter-spacing:0.02em;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .logo small{
+    font-family:'Inter', sans-serif;
+    font-size:10px; font-weight:500;
+    letter-spacing:0.28em;
+    color:var(--teal);
+    text-transform:uppercase;
+  }
+  .logo::after{
+    content:"";
+    width:5px; height:5px; border-radius:50%;
+    background:var(--accent);
+    align-self:center;
+    margin-left:2px;
+  }
+  .navlinks{display:flex; gap:36px; font-size:14px; color:var(--navy-soft);}
+  .navlinks a{position:relative; padding:4px 0; transition:color .25s var(--ease);}
+  .navlinks a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:-2px; height:1px;
+    background:var(--teal); transition:right .3s var(--ease);
+  }
+  .navlinks a:hover{color:var(--teal);}
+  .navlinks a:hover::after{right:0;}
+  .nav-cta{
+    border:1px solid var(--navy); border-radius:2px;
+    padding:9px 20px; font-size:13px; letter-spacing:0.03em;
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), color .22s var(--ease);
+  }
+  .nav-cta:hover{background:var(--navy); color:#fff; box-shadow:0 8px 20px -8px rgba(14,58,84,0.45);}
+  .nav-cta:active{transform:scale(0.96); box-shadow:0 2px 8px -2px rgba(14,58,84,0.35);}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:120px 0 100px;
+    border-bottom:1px solid var(--line-soft);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:-30%; right:-10%;
+    width:640px; height:640px; border-radius:50%;
+    background:radial-gradient(circle, rgba(28,140,147,0.14) 0%, rgba(28,140,147,0) 70%);
+    animation:drift 16s ease-in-out infinite alternate;
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; bottom:-40%; left:-6%;
+    width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(201,149,91,0.10) 0%, rgba(201,149,91,0) 70%);
+    animation:drift 18s ease-in-out infinite alternate-reverse;
+    pointer-events:none;
+  }
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(-24px, 24px) scale(1.06);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero::before, .hero::after{animation:none;}
+  }
+  .eyebrow{
+    font-size:12px; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin-bottom:28px;
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:1px; background:var(--accent);}
+  .hero h1{
+    font-size:clamp(38px, 5vw, 60px);
+    line-height:1.08;
+    max-width:780px;
+    margin-bottom:28px;
+  }
+  .hero h1 em{font-style:italic; color:var(--navy-soft);}
+  .hero p.lead{
+    font-size:18px; color:var(--muted); max-width:560px; margin-bottom:44px;
+    font-weight:300;
+  }
+  .hero-cta{display:flex; gap:18px; align-items:center; flex-wrap:wrap;}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+    color:#fff; padding:15px 30px;
+    border-radius:2px; font-size:14px; letter-spacing:0.02em;
+    box-shadow:0 14px 30px -12px rgba(14,58,84,0.45);
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease), background .3s var(--ease);
+  }
+  .btn-primary:hover{box-shadow:0 18px 34px -10px rgba(28,140,147,0.5); background:linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);}
+  .btn-primary:active{transform:scale(0.96); box-shadow:0 6px 16px -8px rgba(14,58,84,0.4);}
+  .btn-text{
+    font-size:14px; color:var(--navy-soft); border-bottom:1px solid var(--navy-soft); padding-bottom:2px;
+    transition:color .22s var(--ease), border-color .22s var(--ease), transform .22s var(--ease);
+    display:inline-block;
+  }
+  .btn-text:hover{color:var(--teal); border-color:var(--teal);}
+  .btn-text:active{transform:translateY(1px) scale(0.98);}
+
+  .hero-meta{
+    margin-top:90px; padding-top:36px; border-top:1px solid var(--line-soft);
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line-soft);
+  }
+  .hero-meta div{
+    font-size:13px; color:var(--muted); background:var(--panel);
+    padding:26px 24px; transition:background .25s var(--ease);
+  }
+  .hero-meta div:hover{background:linear-gradient(180deg, #fff 0%, var(--bg-deep) 130%);}
+  .hero-meta strong{display:block; font-family:'Source Serif 4',serif; font-size:15px; color:var(--navy); font-weight:500; margin-bottom:6px;}
+
+  /* ===== SECTION SHELL ===== */
+  section.service{
+    padding:130px 0 110px;
+    border-bottom:1px solid var(--line-soft);
+    position:relative;
+  }
+  .service-num{
+    position:absolute;
+    top:0; left:40px;
+    transform:translateY(-50%);
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:9px 18px 9px 16px;
+    font-family:'Inter', sans-serif;
+    font-size:11px; color:var(--navy); letter-spacing:0.2em;
+    text-transform:uppercase; font-weight:600;
+    box-shadow:0 10px 24px -14px rgba(14,58,84,0.3);
+  }
+  .service-num::before{
+    content:"";
+    width:7px; height:7px; border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 0 3px rgba(28,140,147,0.15);
+  }
+  .service-head{
+    display:block;
+    max-width:720px;
+    margin-top:20px;
+    margin-bottom:56px;
+  }
+  .service-head .spacer{display:none;}
+  .service-head h2{font-size:38px; margin-bottom:18px;}
+  .service-head p{color:var(--muted); font-size:16.5px; max-width:640px; font-weight:300;}
+
+  .service-body{
+    display:block;
+  }
+  .service-body .spacer{display:none;}
+
+  .feature-list{list-style:none;}
+  .feature-list li{
+    padding:22px 6px; border-top:1px solid var(--line-soft);
+    display:grid; grid-template-columns:26px 1fr; gap:16px;
+    font-size:15.5px; color:var(--navy-soft);
+    transition:background .25s var(--ease), padding-left .25s var(--ease), color .25s var(--ease);
+    border-radius:2px;
+  }
+  .feature-list li:last-child{border-bottom:1px solid var(--line-soft);}
+  .feature-list li::before{
+    content:"";
+    width:7px; height:7px; margin-top:8px; border-radius:50%;
+    background:var(--line);
+    transition:background .25s var(--ease), transform .25s var(--ease);
+  }
+  .feature-list li:hover{background:var(--panel); padding-left:16px; color:var(--navy); box-shadow:0 16px 32px -26px rgba(14,58,84,0.3);}
+  .feature-list li:hover::before{background:var(--teal); transform:scale(1.3);}
+
+  .info-box{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--teal);
+    padding:32px 34px;
+    margin-top:32px;
+    max-width:400px;
+    box-shadow:0 20px 40px -28px rgba(14,58,84,0.25);
+  }
+  .info-box .row + .row{margin-top:20px; padding-top:20px; border-top:1px solid var(--line-soft);}
+  .info-box .label{
+    font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin-bottom:8px;
+  }
+  .info-box .value{font-size:15px; color:var(--navy);}
+
+  .info-btn{
+    margin-top:24px;
+    display:inline-block;
+    padding:12px 24px;
+    border:1px solid var(--navy);
+    border-radius:2px;
+    font-size:13px; letter-spacing:0.02em; font-weight:500;
+    color:var(--navy);
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease), color .22s var(--ease);
+  }
+  .info-btn:hover{background:var(--navy); color:#fff; box-shadow:0 10px 22px -10px rgba(14,58,84,0.45);}
+  .info-btn:active{transform:scale(0.96); box-shadow:0 3px 10px -4px rgba(14,58,84,0.4);}
+
+  /* psychometrics grid — hover reads as a "selected" state */
+  .trait-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--line-soft); border:1px solid var(--line-soft);}
+  .trait{
+    background:var(--panel); padding:38px 32px;
+    position:relative; overflow:hidden;
+    cursor:default;
+    transition:background .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .trait::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--teal);
+    transform:scaleY(0); transform-origin:bottom;
+    transition:transform .35s var(--ease);
+  }
+  .trait-check{
+    position:absolute; top:24px; right:24px;
+    width:26px; height:26px; border-radius:50%;
+    border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; color:transparent;
+    background:var(--panel);
+    transition:all .3s var(--ease);
+  }
+  .trait h3{font-size:19px; margin-bottom:14px; font-weight:500; padding-right:30px; transition:color .3s var(--ease);}
+  .trait p{font-size:14.5px; color:var(--muted); font-weight:300;}
+  .trait:hover{
+    background:linear-gradient(165deg, #fff 0%, var(--bg-deep) 100%);
+    transform:translateY(-6px);
+    box-shadow:0 30px 50px -28px rgba(14,58,84,0.35);
+    z-index:2;
+  }
+  .trait:hover::before{transform:scaleY(1); transform-origin:top;}
+  .trait:hover h3{color:var(--teal);}
+  .trait:hover .trait-check{
+    background:var(--teal); border-color:var(--teal); color:#fff;
+    transform:scale(1.08);
+  }
+
+  /* outplacement plans */
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .plan{
+    background:var(--panel); border:1px solid var(--line);
+    padding:36px 30px; display:flex; flex-direction:column;
+    position:relative;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .plan:hover{transform:translateY(-4px); box-shadow:0 24px 44px -30px rgba(14,58,84,0.35);}
+  .plan.featured{
+    border-color:transparent;
+    background:linear-gradient(180deg, #fff 0%, var(--bg-deep) 100%);
+    box-shadow:0 28px 54px -26px rgba(14,58,84,0.28);
+  }
+  .plan.featured::before{
+    content:"Más solicitado";
+    position:absolute; top:0; right:30px; transform:translateY(-50%);
+    background:var(--accent); color:#fff; font-size:10.5px; font-weight:600;
+    letter-spacing:0.1em; text-transform:uppercase; padding:6px 14px; border-radius:2px;
+  }
+  .plan-tag{font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-bottom:14px;}
+  .plan h3{font-size:24px; margin-bottom:6px;}
+  .plan .plan-desc{font-size:13.5px; color:var(--muted); margin-bottom:24px; font-weight:300;}
+  .plan .price{
+    font-family:'Source Serif 4', serif; font-size:30px; color:var(--navy);
+    margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid var(--line-soft);
+  }
+  .plan .price span{font-size:14px; font-family:'Inter',sans-serif; color:var(--muted); font-weight:300;}
+  .plan ul{list-style:none; flex:1;}
+  .plan ul li{
+    font-size:14px; color:var(--navy-soft); padding:10px 0;
+    display:grid; grid-template-columns:16px 1fr; gap:10px;
+  }
+  .plan ul li::before{content:"—"; color:var(--teal);}
+  .plan-addon{margin-top:40px; text-align:center; font-size:14px; color:var(--muted);}
+  .plan-addon strong{color:var(--navy); font-weight:500;}
+
+  .plan-btn{
+    margin-top:28px;
+    display:block; text-align:center;
+    padding:13px 20px;
+    border:1px solid var(--navy);
+    border-radius:2px;
+    font-size:13.5px; letter-spacing:0.02em; font-weight:500;
+    color:var(--navy);
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease), background .25s var(--ease), color .22s var(--ease), border-color .22s var(--ease);
+  }
+  .plan-btn:hover{background:var(--navy); color:#fff; box-shadow:0 12px 24px -12px rgba(14,58,84,0.45);}
+  .plan-btn:active{transform:scale(0.96); box-shadow:0 4px 10px -6px rgba(14,58,84,0.4);}
+  .plan.featured .plan-btn{background:linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%); color:#fff; border-color:transparent;}
+  .plan.featured .plan-btn:hover{box-shadow:0 14px 28px -10px rgba(28,140,147,0.5);}
+  .plan.featured .plan-btn:active{transform:scale(0.96);}
+
+  /* ===== CONTACT / FOOTER ===== */
+  footer{padding:100px 0 60px; background:linear-gradient(180deg, transparent 0%, var(--bg-deep) 100%);}
+  .contact-grid{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:start;
+    padding-bottom:70px; border-bottom:1px solid var(--line-soft);
+  }
+  footer h2{font-size:34px; margin-bottom:20px; max-width:420px;}
+  footer .lead{color:var(--muted); font-size:16px; font-weight:300; max-width:420px;}
+  .contact-details{display:flex; flex-direction:column; gap:26px;}
+  .contact-details .item .label{font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-bottom:8px;}
+  .contact-details .item .value{font-size:18px; font-family:'Source Serif 4',serif; color:var(--navy);}
+  .foot-bottom{
+    padding-top:32px; display:flex; justify-content:space-between; align-items:center;
+    font-size:12.5px; color:var(--muted);
+  }
+
+  @media (max-width: 860px){
+    .wrap{padding:0 24px;}
+    nav{padding:18px 24px;}
+    .navlinks{display:none;}
+    .hero{padding:80px 0 60px;}
+    .hero-meta{grid-template-columns:1fr; gap:24px;}
+    .service-num{left:24px;}
+    .trait-grid{grid-template-columns:1fr;}
+    .plans{grid-template-columns:1fr;}
+    .plan.featured::before{right:auto; left:30px;}
+    .contact-grid{grid-template-columns:1fr; gap:40px;}
+    .foot-bottom{flex-direction:column; gap:10px; align-items:flex-start;}
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in-view .trait:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.in-view .trait:nth-child(2){transition-delay:.15s;}
+  .reveal-stagger.in-view .trait:nth-child(3){transition-delay:.25s;}
+  .reveal-stagger .trait{opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);}
+  .reveal-stagger.in-view .trait{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in-view .plan:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.in-view .plan:nth-child(2){transition-delay:.15s;}
+  .reveal-stagger.in-view .plan:nth-child(3){transition-delay:.25s;}
+  .reveal-stagger .plan{opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease), transform .7s var(--ease), box-shadow .3s var(--ease);}
+  .reveal-stagger.in-view .plan{opacity:1; transform:translateY(0);}
+
+  .navlinks a.active{color:var(--teal);}
+  .navlinks a.active::after{right:0;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-stagger .trait, .reveal-stagger .plan{opacity:1; transform:none; transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">ALCI<small>Consultores</small></div>
+    <div class="navlinks">
+      <a href="#atraccion">Atracción de talento</a>
+      <a href="#psicometria">Psicometría</a>
+      <a href="#outplacement">Outplacement</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="nav-cta">Solicitar consulta</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Monterrey, Nuevo León · México</span>
+    <h1>Soluciones integrales de Recursos Humanos <em>fundamentadas en rigor profesional.</em></h1>
+    <p class="lead">Asesoramos a organizaciones en los procesos de atracción, evaluación y transición de talento, mediante metodologías estructuradas y resultados verificables.</p>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn-primary">Solicitar una propuesta</a>
+      <a href="#atraccion" class="btn-text">Conocer nuestros servicios ↓</a>
+    </div>
+
+    <div class="hero-meta">
+      <div><strong>Atracción de talento</strong>Reclutamiento y selección de personal con garantía de 30 días naturales.</div>
+      <div><strong>Psicometría</strong>Evaluaciones objetivas de competencias, aptitudes y rasgos de personalidad.</div>
+      <div><strong>Outplacement</strong>Tres planes de asesoría y recolocación laboral.</div>
+    </div>
+  </div>
+</section>
+
+<section class="service" id="atraccion">
+  <div class="service-num">Servicio 01</div>
+  <div class="wrap">
+    <div class="service-head reveal">
+      <div class="spacer"></div>
+      <div>
+        <h2>Atracción de talento</h2>
+        <p>Nos enfocamos en identificar y proporcionar al talento más idóneo para su organización, con base en las competencias, habilidades y cualidades requeridas en el perfil del puesto.</p>
+      </div>
+    </div>
+    <div class="service-body">
+      <div class="spacer"></div>
+      <div>
+        <ul class="feature-list">
+          <li>Asistencia profesional en la descripción del puesto y la definición del perfil ideal.</li>
+          <li>Publicación de la vacante en diferentes medios de reclutamiento.</li>
+          <li>Presentación de los candidatos necesarios para su evaluación por parte del cliente.</li>
+          <li>Elaboración de un reporte de entrevista con información relevante de cada candidato, tanto en el ámbito laboral como en su entorno familiar.</li>
+          <li>Verificación de referencias laborales y personales del candidato seleccionado.</li>
+          <li>Garantía de reposición de 30 días naturales.</li>
+        </ul>
+        <div class="info-box bracket">
+          <div class="row">
+            <div class="label">Inversión</div>
+            <div class="value">Equivalente a un mes de sueldo del puesto, más IVA en caso de requerir factura.</div>
+          </div>
+          <div class="row">
+            <div class="label">Garantía</div>
+            <div class="value">30 días naturales, aplicable a posiciones con sueldo mensual a partir de $15,000 MXN.</div>
+          </div>
+          <a href="#contacto" class="info-btn">Solicitar cotización</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="service" id="psicometria">
+  <div class="service-num">Servicio 02</div>
+  <div class="wrap">
+    <div class="service-head reveal">
+      <div class="spacer"></div>
+      <div>
+        <h2>Psicometría</h2>
+        <p>Esta herramienta proporciona datos objetivos que complementan la entrevista, las referencias laborales y la evaluación técnica del candidato.</p>
+      </div>
+    </div>
+    <div class="trait-grid reveal-stagger">
+      <div class="trait">
+        <div class="trait-check">✓</div>
+        <h3>Competencias y aptitudes</h3>
+        <p>Permite conocer las habilidades del candidato en razonamiento lógico, verbal y numérico, así como su capacidad de atención, memoria y aprendizaje.</p>
+      </div>
+      <div class="trait">
+        <div class="trait-check">✓</div>
+        <h3>Rasgos de personalidad</h3>
+        <p>Facilita la identificación de características como liderazgo, trabajo en equipo, adaptabilidad, tolerancia al estrés, responsabilidad y orientación a resultados.</p>
+      </div>
+      <div class="trait">
+        <div class="trait-check">✓</div>
+        <h3>Desempeño laboral</h3>
+        <p>Incrementa la probabilidad de incorporar a personas cuyo perfil sea compatible con el puesto y con la cultura de la empresa.</p>
+      </div>
+    </div>
+    <div class="info-box bracket" style="margin-top:40px;">
+      <div class="row">
+        <div class="label">Inversión</div>
+        <div class="value">Cada batería de pruebas se cotiza conforme a las necesidades específicas del cliente.</div>
+      </div>
+      <a href="#contacto" class="info-btn">Solicitar información</a>
+    </div>
+  </div>
+</section>
+
+<section class="service" id="outplacement">
+  <div class="service-num">Servicio 03</div>
+  <div class="wrap">
+    <div class="service-head reveal">
+      <div class="spacer"></div>
+      <div>
+        <h2>Outplacement</h2>
+        <p>Programa de asesoría y orientación laboral orientado a apoyar a las personas en proceso de desvinculación en la identificación de nuevas oportunidades profesionales, el fortalecimiento de su perfil y el desarrollo de estrategias efectivas de recolocación. ALCI Consultores ofrece tres planes, diseñados conforme al nivel de acompañamiento requerido.</p>
+      </div>
+    </div>
+
+    <div class="plans reveal-stagger">
+      <div class="plan">
+        <div class="plan-tag">Plan básico</div>
+        <h3>Core</h3>
+        <p class="plan-desc">Cobertura esencial para iniciar el proceso de recolocación.</p>
+        <div class="price">$3,000<span> MXN</span></div>
+        <ul>
+          <li>Sesión de entrevista por videoconferencia.</li>
+          <li>Diseño y estructura de currículum en español.</li>
+        </ul>
+        <a href="#contacto" class="plan-btn">Solicitar plan Core</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-tag">Plan intermedio</div>
+        <h3>Pro</h3>
+        <p class="plan-desc">Acompañamiento presencial con mayor proyección de perfil.</p>
+        <div class="price">$5,000<span> MXN</span></div>
+        <ul>
+          <li>Sesión de entrevista presencial.</li>
+          <li>Diseño y estructura de currículum en español.</li>
+          <li>Proyección del perfil en diferentes fuentes.</li>
+        </ul>
+        <a href="#contacto" class="plan-btn">Solicitar plan Pro</a>
+      </div>
+
+      <div class="plan">
+        <div class="plan-tag">Plan avanzado</div>
+        <h3>Expert</h3>
+        <p class="plan-desc">Acompañamiento integral durante todo el proceso de transición.</p>
+        <div class="price">$8,000<span> MXN</span></div>
+        <ul>
+          <li>Sesión de entrevista presencial.</li>
+          <li>Sesión de entrevista técnica en línea.</li>
+          <li>Diseño y estructura de currículum.</li>
+          <li>Proyección del perfil en diferentes fuentes.</li>
+          <li>Acompañamiento continuo durante 2 meses.</li>
+        </ul>
+        <a href="#contacto" class="plan-btn">Solicitar plan Expert</a>
+      </div>
+    </div>
+
+    <div class="plan-addon">Complemento opcional, disponible para los tres planes — <strong>Currículum en inglés: $2,000 MXN</strong></div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h2>Conversemos sobre las necesidades de su organización.</h2>
+        <p class="lead">Le invitamos a contactarnos por correo electrónico o vía telefónica para agendar una consulta inicial, sin costo ni compromiso.</p>
+      </div>
+      <div class="contact-details">
+        <div class="item">
+          <div class="label">Correo</div>
+          <div class="value">jlopez@alciconsultores.com</div>
+        </div>
+        <div class="item">
+          <div class="label">Teléfono</div>
+          <div class="value">+52 (81) 1070.1027</div>
+        </div>
+        <div class="item">
+          <div class="label">Ubicación</div>
+          <div class="value">Monterrey, Nuevo León, México</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 ALCI Consultores</span>
+      <span>Soluciones de Recursos Humanos</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.navlinks a');
+  const navIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const link = document.querySelector('.navlinks a[href="#' + entry.target.id + '"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, {threshold:0.4, rootMargin:'-80px 0px -40% 0px'});
+  sections.forEach(s=>navIO.observe(s));
+</script>
+</body>
+</html>
